@@ -7,7 +7,10 @@
           <!-- ERROR MESSAGE -->
           <v-layout row v-if="error">
             <v-flex xs12 sm6 offset-sm3>
-              <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+              <app-alert
+                @dismissed="onDismissed"
+                :text="error.message"
+              ></app-alert>
             </v-flex>
           </v-layout>
 
@@ -16,7 +19,7 @@
             <v-form @submit.prevent="postLogin">
               <!-- <v-layout row> -->
               <v-flex xs12>
-                <h1 class="text-center mb-5">登录</h1>
+                <h1 class="text-center mb-5">用户登录</h1>
                 <v-text-field
                   name="ID"
                   label="ID"
@@ -98,16 +101,19 @@ export default {
     error: false
   }),
   methods: {
-    postLogin:function() {
+    postLogin: function() {
       //   let RecvData = await this.axios.post(this.$route.path + "/authAccount");
       this.axios
-        .post("api/authUser",this.UserInfo)
+        .post("api/authUser", this.UserInfo)
         .then(res => {
           const RecvData = res.data;
           // console.log(RecvData);
           if (res.status === 200) {
             alert("登录成功");
-            this.$router.push({name:'UserDashBoard',params: {id:RecvData.id}});
+            this.$router.push({
+              name: "UserDashBoard",
+              params: { id: RecvData.id }
+            });
           } else {
             if (RecvData.username !== localStorage.getItem("username")) {
               alert("用户名未注册");

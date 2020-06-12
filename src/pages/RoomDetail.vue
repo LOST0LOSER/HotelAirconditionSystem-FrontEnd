@@ -2,10 +2,8 @@
   <v-container grid-list-xs>
     <v-layout row wrap justify-center align-center>
       <v-flex xs12 sm6>
-        {{RoomDetail}}
-        <v-card>
-
-        </v-card>>
+        {{ RoomDetail }}
+        <v-card> </v-card>>
       </v-flex>
     </v-layout>
   </v-container>
@@ -13,38 +11,35 @@
 
 <script>
 export default {
-  name:"RoomDetail",
-  props:{
-    RoomNum:undefined,
+  name: "RoomDetail",
+  props: {
+    RoomNum: undefined
   },
-  data(){
-    return{
-      msg:"hello",
-      sendBackInfo:undefined
-    }
+  data() {
+    return {
+      msg: "hello",
+      sendBackInfo: undefined
+    };
   },
-  methods:{
-    
-    async getRoomInfo(){
+  methods: {
+    async getRoomInfo() {
       this.axios({
-        method:'Get',
+        method: "Get",
         url: "/getRoomInfo",
         data: {
-          RoomNum:this.props.RoomNum
+          RoomNum: this.props.RoomNum
         }
-      }).then(function(response){
-        if(response.status == 200){
+      }).then(function(response) {
+        if (response.status == 200) {
           this.$data.sendBackInfo = response.data;
-        }else{
+        } else {
           alert("获取失败！");
-          this.$router.push({path:"Home"});
+          this.$router.push({ path: "Home" });
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

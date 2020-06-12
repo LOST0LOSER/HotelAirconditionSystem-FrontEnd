@@ -1,12 +1,6 @@
 <template>
   <v-container>
     <v-layout column justify-center>
-      <!-- <v-layout row wrap justify-center mt-8 mb-8>
-        <v-card class="elevation-8">
-          <blockquote class="display-2 px-6 py-6">房间信息</blockquote>
-        </v-card>
-      </v-layout>-->
-
       <v-row>
         <v-col
           cols="6"
@@ -19,7 +13,9 @@
               <div>
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title avatar class="headline">房间 : {{Room.RoomID}}</v-list-item-title>
+                    <v-list-item-title avatar class="headline"
+                      >房间 : {{ Room.RoomID }}</v-list-item-title
+                    >
                     <!-- <v-list-item-title avatar class="headline"> 房间 : {{Room.key}}</v-list-item-title> -->
                   </v-list-item-content>
                 </v-list-item>
@@ -29,17 +25,19 @@
               <div>
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title avatar class="headline">用户ID : {{Room.UserID}}</v-list-item-title>
+                    <v-list-item-title avatar class="headline"
+                      >用户ID : {{ Room.UserID }}</v-list-item-title
+                    >
                   </v-list-item-content>
                 </v-list-item>
               </div>
             </v-layout>
             <v-layout column wrap justify-center>
               <v-flex xs6 class="text-center">
-              入住情况 :
+                入住情况 :
               </v-flex>
               <v-flex xs6 class="text-center">
-                {{Room.RoomSignInState?"已入住":"未入住"}}    
+                {{ Room.RoomSignInState ? "已入住" : "未入住" }}
               </v-flex>
             </v-layout>
 
@@ -92,10 +90,12 @@
                   </v-layout>
                 </v-col>
                 <v-col>
-                  <v-form @submit.prevent="signIn(selectedRoom,UserInfo)">
+                  <v-form @submit.prevent="signIn(selectedRoom, UserInfo)">
                     <v-layout row wrap justify-center>
                       <v-flex xs8>
-                        <h1 class="text-center mb-5">房间{{selectedRoom.RoomID}} 入住登记</h1>
+                        <h1 class="text-center mb-5">
+                          房间{{ selectedRoom.RoomID }} 入住登记
+                        </h1>
                         <v-text-field
                           name="ID"
                           label="ID"

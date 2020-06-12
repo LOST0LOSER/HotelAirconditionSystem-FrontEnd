@@ -7,7 +7,6 @@
     elevate-on-scroll
     short
     flat
-    
     xs12
     md6
     sm4
@@ -18,7 +17,9 @@
     <v-menu offset-y activator>
       <!-- <v-btn color="primary" dark slot="activator" class="hidden-md-and-up">导航</v-btn> -->
       <template v-slot:activator="{ on }" class="hidden-md-and-up">
-          <v-btn color="primary" dark v-on="on" class="hidden-md-and-up">导航</v-btn>
+        <v-btn color="primary" dark v-on="on" class="hidden-md-and-up"
+          >导航</v-btn
+        >
       </template>
       <v-list>
         <v-list-item v-for="Page of Pages" :key="Page.id" :to="Page.Link">
@@ -27,12 +28,26 @@
       </v-list>
     </v-menu>
     <!-- 大屏幕导航栏 -->
-    <v-btn v-for="Page of Pages" :key="Page.id" :to="Page.Link" text class="hidden-sm-and-down">
-      <v-icon xs>{{Page.Name}}</v-icon>
+    <v-btn
+      v-for="Page of Pages"
+      :key="Page.id"
+      :to="Page.Link"
+      text
+      class="hidden-sm-and-down"
+    >
+      <v-icon xs>{{ Page.Name }}</v-icon>
     </v-btn>
 
     <v-spacer></v-spacer>
-    <v-text-field size="1" dense single-line solo light placeholder="Search" class="hidden-xs-and-down mt-7 ml-2 mr-2"></v-text-field>
+    <v-text-field
+      size="1"
+      dense
+      single-line
+      solo
+      light
+      placeholder="Search"
+      class="hidden-xs-and-down mt-7 ml-2 mr-2"
+    ></v-text-field>
     <!-- <input v-model="Search" type="text" /> -->
     <v-btn text icon>
       <v-icon>mdi-magnify</v-icon>
@@ -56,10 +71,10 @@ export default {
   computed: {},
   props: {
     SlideBarToggle: Boolean,
-    Pages:Array
+    Pages: Array
   },
   data: () => ({
-    Search: undefined,
+    Search: undefined
     // Pages: [
     //   {
     //     Name: "控制面板",

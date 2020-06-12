@@ -7,7 +7,10 @@
           <!-- ERROR MESSAGE -->
           <v-layout row v-if="error">
             <v-flex xs12 sm6 offset-sm3>
-              <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+              <app-alert
+                @dismissed="onDismissed"
+                :text="error.message"
+              ></app-alert>
             </v-flex>
           </v-layout>
 
@@ -16,7 +19,7 @@
             <v-form @submit.prevent="postLogin">
               <!-- <v-layout row> -->
               <v-flex xs12>
-                <h1 class="text-center mb-5">登录</h1>
+                <h1 class="text-center mb-5">经理登录</h1>
                 <v-text-field
                   name="ID"
                   label="ID"
@@ -48,7 +51,7 @@
                     </span>
                   </v-btn>
                 </div>
-                <div class="text-center mt-3">
+                <!-- <div class="text-center mt-3">
                   <v-btn color="blue" :loading="loading" @click.prevent="onSigninGoogle">
                     忘记密码?
                     <v-icon right>mdi-key-variant</v-icon>
@@ -56,11 +59,21 @@
                       <v-icon>cached</v-icon>
                     </span>
                   </v-btn>
-                </div>
-                <div class="text-center mt-3">
+                </div> -->
+                <!-- <div class="text-center mt-3">
                   <v-btn color="blue" :loading="loading" to="Register">
                     没有帐号?
                     <v-icon right>mdi-account</v-icon>
+                    <span slot="loader" class="custom-loader">
+                      <v-icon>cached</v-icon>
+                    </span>
+                  </v-btn>
+                </div> -->
+                <div class="text-center mt-3">
+                  <!-- <div id="my-signin2"></div> -->
+                  <v-btn color="grey" :loading="loading" to="Entrance">
+                    返回入口
+                    <v-icon right>mdi-logout-variant</v-icon>
                     <span slot="loader" class="custom-loader">
                       <v-icon>cached</v-icon>
                     </span>
@@ -87,15 +100,15 @@ export default {
     error: false
   }),
   methods: {
-    postLogin:function() {
+    postLogin: function() {
       this.axios
-        .post("api/authUser",this.UserInfo)
+        .post("api/user/login", this.UserInfo)
         .then(res => {
           const RecvData = res.data;
           console.log(RecvData);
           if (res.status === 200) {
             alert("登录成功");
-            this.$router.push({name:'Manager',params: {id:RecvData.id}});
+            this.$router.push({ name: "Manager", params: { id: RecvData.id } });
           } else {
             if (RecvData.username !== localStorage.getItem("username")) {
               alert("用户名未注册");

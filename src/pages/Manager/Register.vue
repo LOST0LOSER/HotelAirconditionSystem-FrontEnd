@@ -7,7 +7,10 @@
             <!-- ERROR MESSAGE -->
             <v-layout row v-if="error">
               <v-flex xs12 sm6 offset-sm3>
-                <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+                <app-alert
+                  @dismissed="onDismissed"
+                  :text="error.message"
+                ></app-alert>
               </v-flex>
             </v-layout>
 
@@ -17,13 +20,13 @@
                 <!-- <v-layout row> -->
                 <v-flex xs12>
                   <h1 class="text-center mb-5">注册</h1>
-                  <v-text-field 
-                  name="IDID" 
-                  label="ID" 
-                  id="ID" 
-                  v-model="UserInfo.AccountID" 
-                  type="IDID" 
-                  required
+                  <v-text-field
+                    name="IDID"
+                    label="ID"
+                    id="ID"
+                    v-model="UserInfo.AccountID"
+                    type="IDID"
+                    required
                   ></v-text-field>
                 </v-flex>
 
@@ -40,7 +43,12 @@
 
                 <v-flex xs12 class="py-3">
                   <div class="text-center">
-                    <v-btn outlined type="submit" :disabled="loading" :loading="loading">
+                    <v-btn
+                      outlined
+                      type="submit"
+                      :disabled="loading"
+                      :loading="loading"
+                    >
                       注册
                       <v-icon right>mdi-lock-open</v-icon>
                       <span slot="loader" class="custom-loader">
@@ -49,7 +57,12 @@
                     </v-btn>
                   </div>
                   <div class="text-center mt-3">
-                    <v-btn to="Login" color="blue" :disabled="loading" :loading="loading">
+                    <v-btn
+                      to="Login"
+                      color="blue"
+                      :disabled="loading"
+                      :loading="loading"
+                    >
                       返回登录
                       <v-icon right>mdi-login</v-icon>
                       <span slot="loader" class="custom-loader">
@@ -72,7 +85,7 @@ import axios from "axios";
 export default {
   name: "Register",
   data: () => ({
-    UserInfo:{
+    UserInfo: {
       AccountID: undefined,
       Password: undefined
     }
@@ -80,7 +93,7 @@ export default {
   methods: {
     postRegister: function() {
       axios
-        .post("api/storeAccount",this.UserInfo)
+        .post("api/storeAccount", this.UserInfo)
         .then(res => {
           console.log(res);
         })
@@ -92,5 +105,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

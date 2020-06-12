@@ -1,4 +1,4 @@
-let PlaneData = [{
+let PlaneData = {
   Rooms: [{
       RoomID: 1,
       powerOn: false,
@@ -28,8 +28,10 @@ let PlaneData = [{
       isCool: true,
       defaultTemp: 25,
       highLimitedTemp: 30,
-      lowLimitedTemp: 16
+      lowLimitedTemp: 16,
+      runningTime: "0:02:30"
     }
   ]
-}];
+}
+
 export default PlaneData;

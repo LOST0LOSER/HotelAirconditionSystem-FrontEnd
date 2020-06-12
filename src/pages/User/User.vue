@@ -9,6 +9,7 @@
       :List="List"
       :SlideBarToggle="SlideBarToggleState"
       @switchToggle="SlideBarToggleState = $event"
+      :LogOutPath="'UserLogin'"
     ></SlideBar>
     <!-- <v-container fluid grid-list-md>
       <v-layout row wrap>
@@ -36,12 +37,12 @@ export default {
     Header,
     SlideBar
   },
-  props:{
-    id:String
+  props: {
+    id: String
   },
   data: () => ({
     SlideBarToggleState: false,
-    
+
     // Pages: [
     //   {
     //     Name: "用户面板",
@@ -53,7 +54,7 @@ export default {
         title: "UserDashBoard",
         icon: "mdi-desktop-mac-dashboard",
         link: "UserDashBoard"
-      },
+      }
       // {
       //   title: "MyRoomInfo",
       //   icon: "mdi-door",
@@ -65,6 +66,6 @@ export default {
       //   link: "/Aircondition/"
       // }
     ]
-  }),
+  })
 };
 </script>

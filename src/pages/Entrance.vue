@@ -1,7 +1,13 @@
 <template>
   <div>
     <v-container grid-list-xs>
-      <v-layout row wrap justify-center mt-10 mb-10>
+      <v-layout
+        row
+        wrap
+        justify-center
+        mt-10
+        mb-10
+      >
         <!-- <v-card>
           <v-list-item>
             <v-list-item-content>
@@ -9,25 +15,51 @@
             </v-list-item-content>
           </v-list-item>
         </v-card> -->
-        <blockquote class="display-3">酒店空调系统</blockquote>
+        <blockquote class="display-3">
+          酒店空调系统
+        </blockquote>
       </v-layout>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-row>
-        <v-col v-for="Entry of Entries" :key="Entry.id" cols="6" md="3">
+        <v-col
+          v-for="Entry of Entries"
+          :key="Entry.id"
+          cols="6"
+          md="3"
+        >
           <v-card class="elevation-8">
-            <v-layout row wrap justify-center>
+            <v-layout
+              row
+              wrap
+              justify-center
+            >
               <div>
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title avatar class="headline mb-8">{{Entry.Name}}</v-list-item-title>
+                    <v-list-item-title
+                      avatar
+                      class="headline mb-8"
+                    >
+                      {{
+                        Entry.Name
+                      }}
+                    </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </div>
             </v-layout>
-            <v-divider></v-divider>
+            <v-divider />
             <v-card-actions>
-              <v-layout row wrap justify-center>
-                <v-btn color="primary" :to="Entry.Link">
+              <v-layout
+                row
+                wrap
+                justify-center
+              >
+                <v-btn
+                  class="px-5 px-sm-7 px-md-10"
+                  color="primary"
+                  :to="Entry.Link"
+                >
                   <v-icon>mdi-login-variant</v-icon>
                 </v-btn>
               </v-layout>
@@ -64,5 +96,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

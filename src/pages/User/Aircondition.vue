@@ -3,7 +3,12 @@
     <v-row align="center">
       <v-col cols="3" md="4"></v-col>
       <v-col cols="6" md="4">
-        <v-select :items="Rooms" v-model="RoomId" label="Room" outlined></v-select>
+        <v-select
+          :items="Rooms"
+          v-model="RoomId"
+          label="Room"
+          outlined
+        ></v-select>
       </v-col>
       <v-col cols="3" md="4"></v-col>
     </v-row>
@@ -14,13 +19,16 @@
         <v-card class="mx-auto elevation-8" max-width="1000" outlined>
           <v-list-item three-line>
             <v-list-item-content>
-              <v-list-item-tile avatar class="headline mb-8">控制器</v-list-item-tile>
+              <v-list-item-tile avatar class="headline mb-8"
+                >控制器</v-list-item-tile
+              >
             </v-list-item-content>
             <v-list-item-content>
-              <v-list-item-tile
-                avatar
-                class="headline mb-8"
-              >当前设置温度:{{this.AirconditionInfo.curTemp}}°C</v-list-item-tile>
+              <v-list-item-tile avatar class="headline mb-8"
+                >当前设置温度:{{
+                  this.AirconditionInfo.curTemp
+                }}°C</v-list-item-tile
+              >
             </v-list-item-content>
           </v-list-item>
 
@@ -35,17 +43,19 @@
                   dark
                   fab
                   large
-                >{{controller.powerSwitcher.msg}}</v-btn>
+                  >{{ controller.powerSwitcher.msg }}</v-btn
+                >
               </v-col>
               <v-col>
-                <v-btn 
-                style="display:block;margin:0 auto" 
-                color="primary" 
-                dark 
-                fab 
-                large
-                @click="switchTimer"
-                >定时:{{controller.timer.msg}}</v-btn>
+                <v-btn
+                  style="display:block;margin:0 auto"
+                  color="primary"
+                  dark
+                  fab
+                  large
+                  @click="switchTimer"
+                  >定时:{{ controller.timer.msg }}</v-btn
+                >
               </v-col>
             </v-row>
 
@@ -56,7 +66,10 @@
               <v-col cols="9">
                 <v-radio-group v-model="AirconditionInfo.windSpeed">
                   <v-row>
-                    <v-col v-for="item in controller.wind.windSpeed" :key="item.key">
+                    <v-col
+                      v-for="item in controller.wind.windSpeed"
+                      :key="item.key"
+                    >
                       <v-radio :label="item" :value="item.key"></v-radio>
                     </v-col>
                   </v-row>
@@ -92,9 +105,13 @@
 
             <v-row>
               <v-col cols="5"></v-col>
-              <v-col >
+              <v-col>
                 <blockquote>
-                  <v-switch label="扫风" v-model="controller.wind.sweeping" dense></v-switch>
+                  <v-switch
+                    label="扫风"
+                    v-model="controller.wind.sweeping"
+                    dense
+                  ></v-switch>
                 </blockquote>
                 <!-- <v-checkbox
                   label="扫风"
@@ -128,7 +145,9 @@
     <v-row algin="center">
       <v-col></v-col>
       <v-col cols="6">
-        <v-btn style="display:block" color="primary" large rounded>信息发送</v-btn>
+        <v-btn style="display:block" color="primary" large rounded
+          >信息发送</v-btn
+        >
       </v-col>
       <v-col></v-col>
     </v-row>
@@ -147,11 +166,11 @@ export default {
       windSpeed: null,
       sweeping: false,
       timerSet: false,
-      timerDuration:0 //计时器时间
+      timerDuration: 0 //计时器时间
     },
     controller: {
       powerSwitcher: {
-        powerOn:false,
+        powerOn: false,
         switcherColor: "red",
         msg: "关"
       },
@@ -163,10 +182,10 @@ export default {
         sweeping: false
       },
       timer: {
-        msg:"关",
+        msg: "关",
         timerSet: false,
-        timerDuration:0, //计时器时间
-        timeSelection:["0",1,2,3,4,5,6,7,8]
+        timerDuration: 0, //计时器时间
+        timeSelection: ["0", 1, 2, 3, 4, 5, 6, 7, 8]
       }
     },
     infoPack: {
@@ -189,7 +208,7 @@ export default {
           .then(res => {
             this.AirconditionInfo = res.AirconditionInfo;
             console.log(res);
-            console.log(this.AirconditionInfo)
+            console.log(this.AirconditionInfo);
           })
           .catch(err => {
             console.error(err);
@@ -210,12 +229,12 @@ export default {
       }
     },
     switchTimer: function() {
-      if(this.controller.timer.timerSet === false){
+      if (this.controller.timer.timerSet === false) {
         this.controller.timer.timerSet = true;
-        this.controller.timer.msg = "开"
-      }else{
+        this.controller.timer.msg = "开";
+      } else {
         this.controller.timer.timerSet = false;
-        this.controller.timer.msg = "关"
+        this.controller.timer.msg = "关";
       }
     },
     addTemp: function() {
@@ -255,8 +274,8 @@ export default {
 
     sendInfo: function() {}
   },
-  watch:{
-    RoomId:'getAirconditionInfo',
+  watch: {
+    RoomId: "getAirconditionInfo"
   }
 };
 </script>

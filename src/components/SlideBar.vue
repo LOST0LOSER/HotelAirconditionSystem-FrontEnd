@@ -17,7 +17,7 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>{{UserID}}</v-list-item-title>
+            <v-list-item-title>{{ UserID }}</v-list-item-title>
           </v-list-item-content>
 
           <v-btn icon @click.stop="SlideBarToggle = !SlideBarToggle">
@@ -37,7 +37,12 @@
       <v-divider></v-divider>
 
       <v-list dense nav close-on-click close-on-content-click>
-        <v-list-item v-for="item of List" :key="item.title" :to="item.link" link>
+        <v-list-item
+          v-for="item of List"
+          :key="item.title"
+          :to="item.link"
+          link
+        >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -50,7 +55,7 @@
 
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn block to="Entrance">Logout</v-btn>
+          <v-btn block :to="{name:LogOutPath}">Logout</v-btn>
         </div>
       </template>
     </v-navigation-drawer>
@@ -63,7 +68,8 @@ export default {
   props: {
     SlideBarToggle: Boolean,
     List: Array,
-    UserID: Number
+    UserID: Number,
+    LogOutPath:String
   },
   data() {
     return {};

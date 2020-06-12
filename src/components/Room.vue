@@ -4,15 +4,15 @@
     <v-layout row justify-space-around wrap>
       <blockquote>
         <blockquote class="Room blockquote .font-weight-regular">
-          <span>房间编号:{{RoomInfo.SerialNumber}}</span>
+          <span>房间编号:{{ RoomInfo.SerialNumber }}</span>
           <br />
-          <span>当前温度:{{RoomInfo.CurrentTemputure}}</span>
+          <span>当前温度:{{ RoomInfo.CurrentTemputure }}</span>
           <br />
-          <span>目标温度:{{RoomInfo.TargetTemputure}}</span>
+          <span>目标温度:{{ RoomInfo.TargetTemputure }}</span>
           <br />
-          <span>当前风速:{{RoomInfo.CurrentWindSpeed}}</span>
+          <span>当前风速:{{ RoomInfo.CurrentWindSpeed }}</span>
           <br />
-          <span>状态:{{RoomInfo.CurrentState}}</span>
+          <span>状态:{{ RoomInfo.CurrentState }}</span>
           <br />
         </blockquote>
         <v-layout justify-center mt-1>

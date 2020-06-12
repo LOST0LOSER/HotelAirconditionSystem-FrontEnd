@@ -4,7 +4,7 @@
       <v-flex lg12 sm6>
         <v-card class="elevation-8">
           <v-card-text>
-            <span>房间号{{RoomNum}}</span>
+            <span>房间号{{ RoomNum }}</span>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -19,9 +19,7 @@ export default {
     RoomNum: String
   },
   data: () => ({}),
-  methods: {
-    
-  }
+  methods: {}
 };
 </script>
 

@@ -1,26 +1,21 @@
 <template>
   <v-card class="mx-auto elevation-8" max-width="32rem" height="40rem" outlined>
     <v-layout row wrap justify-center mt-12>
-      <v-flex xs4 class="headline text-center">
-      
-      控制器
-      </v-flex>
-      <v-flex xs2>
-        
-      </v-flex>
+      <v-flex xs4 class="headline text-center">控制器</v-flex>
+      <v-flex xs2></v-flex>
       <v-flex xs4 class="headline text-center">
         当前室内温度:
-        {{controller.temperture.curTemp}}°C
+        {{ controller.temperture.curTemp }}°C
       </v-flex>
     </v-layout>
-    
+
     <v-list-item>
       <!-- <v-list-item-content>
         <v-list-item-title avatar class="headline">控制器</v-list-item-title>
-      </v-list-item-content> -->
+      </v-list-item-content>-->
       <!-- <v-list-item-content>
         <v-list-item-title avatar class="headline">当前室内温度:{{controller.temperture.curTemp}}°C</v-list-item-title>
-      </v-list-item-content> -->
+      </v-list-item-content>-->
     </v-list-item>
 
     <v-card-text>
@@ -34,7 +29,7 @@
             dark
             fab
             large
-          >{{controller.powerSwitcher.msg}}</v-btn>
+          >{{ controller.powerSwitcher.msg }}</v-btn>
         </v-col>
         <v-col>
           <v-btn
@@ -44,7 +39,7 @@
             fab
             large
             @click="switchTimer"
-          >定时:{{controller.timer.msg}}</v-btn>
+          >定时:{{ controller.timer.msg }}</v-btn>
         </v-col>
       </v-row>
 
@@ -69,7 +64,6 @@
         </v-col>
         <v-col cols="2">
           <v-text-field
-            
             label="°C"
             value="value"
             single-line
@@ -215,7 +209,7 @@ export default {
     // postControllerSetting: function() {
     //   if (this.RoomId !== undefined) {
     //     this.axios
-    //       .post(serverURL + "/api/changeAirconditionInfo", this.infoPack)
+    //       .post(serverURL + "/changeAirconditionInfo", this.infoPack)
     //       .then(res => {
     //         this.AirconditionInfo = res.AirconditionInfo;
     //       })
@@ -323,7 +317,7 @@ export default {
             this.packSendInfo();
             console.log(this.$data.infoPack == this.AirconditionInfo);
             this.$emit("updateAirconditionInfo", this.infoPack);
-          }else{
+          } else {
             this.$data.controllerIsSet = true;
           }
         }
@@ -335,5 +329,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
