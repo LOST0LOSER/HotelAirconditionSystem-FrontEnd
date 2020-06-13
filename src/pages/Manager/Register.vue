@@ -1,47 +1,76 @@
 <template>
   <div id="app">
-    <v-container justify-center align-center mt-12>
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs12 sm6>
+    <v-container
+      justify-center
+      align-center
+      mt-12
+    >
+      <v-layout
+        row
+        wrap
+        align-center
+        justify-center
+      >
+        <v-flex
+          xs12
+          sm6
+        >
           <v-card class="elevation-8">
             <!-- ERROR MESSAGE -->
-            <v-layout row v-if="error">
-              <v-flex xs12 sm6 offset-sm3>
+            <v-layout
+              v-if="error"
+              row
+            >
+              <v-flex
+                xs12
+                sm6
+                offset-sm3
+              >
                 <app-alert
-                  @dismissed="onDismissed"
                   :text="error.message"
-                ></app-alert>
+                  @dismissed="onDismissed"
+                />
               </v-flex>
             </v-layout>
 
             <!-- Login/Signin -->
-            <v-layout row align-center justify-center class="py-5">
+            <v-layout
+              row
+              align-center
+              justify-center
+              class="py-5"
+            >
               <v-form @submit.prevent="onSignin">
                 <!-- <v-layout row> -->
                 <v-flex xs12>
-                  <h1 class="text-center mb-5">注册</h1>
+                  <h1 class="text-center mb-5">
+                    注册
+                  </h1>
                   <v-text-field
-                    name="IDID"
-                    label="ID"
                     id="ID"
                     v-model="UserInfo.AccountID"
+                    name="IDID"
+                    label="ID"
                     type="IDID"
                     required
-                  ></v-text-field>
+                  />
                 </v-flex>
 
                 <v-flex xs12>
                   <v-text-field
-                    name="password"
-                    label="Password"
                     id="password"
                     v-model="UserInfo.Password"
+                    name="password"
+                    label="Password"
                     type="password"
                     required
-                  ></v-text-field>
+                  />
                 </v-flex>
 
-                <v-flex xs12 class="py-3">
+                <v-flex
+                  xs12
+                  class="py-3"
+                >
                   <div class="text-center">
                     <v-btn
                       outlined
@@ -50,8 +79,13 @@
                       :loading="loading"
                     >
                       注册
-                      <v-icon right>mdi-lock-open</v-icon>
-                      <span slot="loader" class="custom-loader">
+                      <v-icon right>
+                        mdi-lock-open
+                      </v-icon>
+                      <span
+                        slot="loader"
+                        class="custom-loader"
+                      >
                         <v-icon>cached</v-icon>
                       </span>
                     </v-btn>
@@ -64,8 +98,13 @@
                       :loading="loading"
                     >
                       返回登录
-                      <v-icon right>mdi-login</v-icon>
-                      <span slot="loader" class="custom-loader">
+                      <v-icon right>
+                        mdi-login
+                      </v-icon>
+                      <span
+                        slot="loader"
+                        class="custom-loader"
+                      >
                         <v-icon>cached</v-icon>
                       </span>
                     </v-btn>

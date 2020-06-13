@@ -1,60 +1,97 @@
 <template>
   <v-container>
-    <v-layout column justify-center>
+    <v-layout
+      column
+      justify-center
+    >
       <v-row>
         <v-col
-          cols="6"
-          md="3"
           v-for="Room of RoomData.RoomsGroup[RoomData.GroupOrder]"
           :key="Room.id"
+          cols="6"
+          md="3"
         >
           <v-card class="elevation-8">
-            <v-layout row wrap justify-center>
+            <v-layout
+              row
+              wrap
+              justify-center
+            >
               <div>
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title avatar class="headline"
-                      >房间 : {{ Room.RoomID }}</v-list-item-title
+                    <v-list-item-title
+                      avatar
+                      class="headline"
                     >
+                      房间 : {{ Room.RoomID }}
+                    </v-list-item-title>
                     <!-- <v-list-item-title avatar class="headline"> 房间 : {{Room.key}}</v-list-item-title> -->
                   </v-list-item-content>
                 </v-list-item>
               </div>
             </v-layout>
-            <v-layout row wrap justify-center v-if="RoomData.RoomSignInState">
+            <v-layout
+              v-if="RoomData.RoomSignInState"
+              row
+              wrap
+              justify-center
+            >
               <div>
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title avatar class="headline"
-                      >用户ID : {{ Room.UserID }}</v-list-item-title
+                    <v-list-item-title
+                      avatar
+                      class="headline"
                     >
+                      用户ID : {{ Room.UserID }}
+                    </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </div>
             </v-layout>
-            <v-layout column wrap justify-center>
-              <v-flex xs6 class="text-center">
+            <v-layout
+              column
+              wrap
+              justify-center
+            >
+              <v-flex
+                xs6
+                class="text-center"
+              >
                 入住情况 :
               </v-flex>
-              <v-flex xs6 class="text-center">
+              <v-flex
+                xs6
+                class="text-center"
+              >
                 {{ Room.RoomSignInState ? "已入住" : "未入住" }}
               </v-flex>
             </v-layout>
 
-            <v-divider></v-divider>
+            <v-divider />
 
             <v-card-actions>
-              <v-layout row wrap justify-center>
-                <v-btn disabled v-if="Room.RoomSignInState">
+              <v-layout
+                row
+                wrap
+                justify-center
+              >
+                <v-btn
+                  v-if="Room.RoomSignInState"
+                  disabled
+                >
                   <v-icon>mdi-account</v-icon>
                   <nav>已经入住</nav>
                 </v-btn>
                 <v-btn
-                  color="primary"
                   v-if="!Room.RoomSignInState"
+                  color="primary"
                   @click.prevent="startRegisterProgress(Room)"
                 >
-                  <v-icon left>mdi-login-variant</v-icon>
+                  <v-icon left>
+                    mdi-login-variant
+                  </v-icon>
                   <nav>登记入住</nav>
                 </v-btn>
               </v-layout>
@@ -68,60 +105,93 @@
         <v-pagination
           v-model="RoomData.GroupOrder"
           :length="RoomData.Groups"
-          :prev-icon="'mdi-chevron-left'"
-          :next-icon="'mdi-chevron-right'"
+          :prev-icon="&quot;mdi-chevron-left&quot;"
+          :next-icon="&quot;mdi-chevron-right&quot;"
           :total-visible="5"
-        ></v-pagination>
+        />
       </div>
 
-      <v-divider></v-divider>
+      <v-divider />
       <!-- 分割注册 -->
 
       <transition name="fade">
-        <v-layout row wrap justify-center v-if="registerState">
-          <v-flex xs12 sm8 mt-12>
+        <v-layout
+          v-if="registerState"
+          row
+          wrap
+          justify-center
+        >
+          <v-flex
+            xs12
+            sm8
+            mt-12
+          >
             <v-card class="elevation-8 py-5">
               <v-row mt-8>
-                <v-col cols="2" md="2">
-                  <v-layout justify-center mt-1>
-                    <v-btn icon @click="registerState = false">
+                <v-col
+                  cols="2"
+                  md="2"
+                >
+                  <v-layout
+                    justify-center
+                    mt-1
+                  >
+                    <v-btn
+                      icon
+                      @click="registerState = false"
+                    >
                       <v-icon>mdi-arrow-left</v-icon>
                     </v-btn>
                   </v-layout>
                 </v-col>
                 <v-col>
                   <v-form @submit.prevent="signIn(selectedRoom, UserInfo)">
-                    <v-layout row wrap justify-center>
+                    <v-layout
+                      row
+                      wrap
+                      justify-center
+                    >
                       <v-flex xs8>
                         <h1 class="text-center mb-5">
                           房间{{ selectedRoom.RoomID }} 入住登记
                         </h1>
                         <v-text-field
-                          name="ID"
-                          label="ID"
                           id="ID"
                           v-model="UserInfo.AccountID"
+                          name="ID"
+                          label="ID"
                           type="input"
                           required
-                        ></v-text-field>
+                        />
                       </v-flex>
 
                       <v-flex xs8>
                         <v-text-field
-                          name="password"
-                          label="Password"
                           id="Password"
                           v-model="UserInfo.Password"
+                          name="password"
+                          label="Password"
                           type="password"
                           required
-                        ></v-text-field>
+                        />
                       </v-flex>
-                      <v-flex xs8 class="py-3">
+                      <v-flex
+                        xs8
+                        class="py-3"
+                      >
                         <div class="text-center">
-                          <v-btn outlined type="submit" :loading="loading">
+                          <v-btn
+                            outlined
+                            type="submit"
+                          >
                             登记
-                            <v-icon right>mdi-key-variant</v-icon>
-                            <span slot="loader" class="custom-loader">
+                            <v-icon right>
+                              mdi-key-variant
+                            </v-icon>
+                            <span
+                              slot="loader"
+                              class="custom-loader"
+                            >
                               <v-icon>cached</v-icon>
                             </span>
                           </v-btn>
@@ -130,7 +200,10 @@
                     </v-layout>
                   </v-form>
                 </v-col>
-                <v-col cols="2" md="2"></v-col>
+                <v-col
+                  cols="2"
+                  md="2"
+                />
               </v-row>
             </v-card>
           </v-flex>
@@ -164,6 +237,9 @@ export default {
   created() {
     this.deliverRoomData(this.rawRoomData);
     console.log(this.RoomData.RoomsGroup);
+  },
+  destroyed() {
+    this.rawRoomData = null;
   },
   methods: {
     getAndDeliverRoomData() {
@@ -224,6 +300,14 @@ export default {
           .catch(err => {
             console.error(err);
           });
+
+        this.axios.post("api/room/initial")
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.error(err); 
+        })
       } else {
         if (!isNotEmpty(account.AccountID) && !isNotEmpty(account.Password)) {
           alert("请输入ID和密码");
@@ -235,9 +319,6 @@ export default {
         }
       }
     }
-  },
-  destroyed() {
-    this.rawRoomData = null;
   }
 };
 </script>

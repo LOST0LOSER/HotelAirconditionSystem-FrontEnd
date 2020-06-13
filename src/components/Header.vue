@@ -12,17 +12,32 @@
     sm4
   >
     <!-- 侧栏按钮 -->
-    <v-app-bar-nav-icon @click.stop="switchToggle"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon @click.stop="switchToggle" />
     <!-- 小屏幕导航栏 -->
-    <v-menu offset-y activator>
+    <v-menu
+      offset-y
+      activator
+    >
       <!-- <v-btn color="primary" dark slot="activator" class="hidden-md-and-up">导航</v-btn> -->
-      <template v-slot:activator="{ on }" class="hidden-md-and-up">
-        <v-btn color="primary" dark v-on="on" class="hidden-md-and-up"
-          >导航</v-btn
+      <template
+        v-slot:activator="{ on }"
+        class="hidden-md-and-up"
+      >
+        <v-btn
+          color="primary"
+          dark
+          class="hidden-md-and-up"
+          v-on="on"
         >
+          导航
+        </v-btn>
       </template>
       <v-list>
-        <v-list-item v-for="Page of Pages" :key="Page.id" :to="Page.Link">
+        <v-list-item
+          v-for="Page of Pages"
+          :key="Page.id"
+          :to="Page.Link"
+        >
           <v-list-item-title>{{ Page.Name }}</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -35,10 +50,12 @@
       text
       class="hidden-sm-and-down"
     >
-      <v-icon xs>{{ Page.Name }}</v-icon>
+      <v-icon xs>
+        {{ Page.Name }}
+      </v-icon>
     </v-btn>
 
-    <v-spacer></v-spacer>
+    <v-spacer />
     <v-text-field
       size="1"
       dense
@@ -47,9 +64,12 @@
       light
       placeholder="Search"
       class="hidden-xs-and-down mt-7 ml-2 mr-2"
-    ></v-text-field>
+    />
     <!-- <input v-model="Search" type="text" /> -->
-    <v-btn text icon>
+    <v-btn
+      text
+      icon
+    >
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
     <!-- <v-btn to="/Login" text>
@@ -68,7 +88,6 @@
 <script>
 export default {
   name: "Header",
-  computed: {},
   props: {
     SlideBarToggle: Boolean,
     Pages: Array
@@ -94,6 +113,7 @@ export default {
     //   }
     // ]
   }),
+  computed: {},
   methods: {
     switchToggle: function() {
       this.SlideBarToggle = !this.SlideBarToggle;

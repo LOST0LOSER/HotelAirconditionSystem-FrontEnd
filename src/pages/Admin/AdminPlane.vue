@@ -1,35 +1,89 @@
 <template>
   <v-container grid-list-xs>
-    <v-layout row wrap justify-center>
-      <v-flex v-for="room of PlaneData.Rooms" :key="room.id" xs6 sm3>
-        <v-layout column wrap align-center class="elevation-5 rounded-xl mx-5 my-5 py-5">
-          <v-flex v-for="itemKey of TranslatedDataKey" :key="itemKey.id" xs2>
+    <v-layout
+      row
+      wrap
+      justify-center
+    >
+      <v-flex
+        v-for="room of PlaneData.Rooms"
+        :key="room.id"
+        xs6
+        md3
+      >
+        <v-layout
+          column
+          wrap
+          align-center
+          class="elevation-5 rounded-xl mx-5 my-5 py-5"
+        >
+          <v-flex
+            v-for="itemKey of TranslatedDataKey"
+            :key="itemKey.id"
+            xs2
+          >
             {{ TranslatedDataKeyContent[itemKey] }}:{{ translateInfo(room)[itemKey] }}
             <v-spacer />
           </v-flex>
           <v-flex>
-            <v-btn color="primary" @click="clickSwitcher(room)">{{ room["powerOn"]?"关机":"开机" }}</v-btn>
+            <v-btn
+              color="primary"
+              @click="clickSwitcher(room)"
+            >
+              {{ room["powerOn"]?"关机":"开机" }}
+            </v-btn>
           </v-flex>
         </v-layout>
       </v-flex>
     </v-layout>
 
-    <v-layout row wrap class="elevation-10 mx-5 my-5">
+    <v-layout
+      row
+      wrap
+      class="elevation-10 mx-5 my-5"
+    >
       <v-flex
-        v-for="(itemVal,itemKey) of ControlPlane.Data"
+        v-for="(itemVal,itemKey) of ControlPlane.Input"
         :key="itemKey"
         xs6
         md3
         class="elevation-1"
       >
-        <v-layout column wrap align-center my-3>
-          <v-flex xs3>{{ itemVal.Title }}</v-flex>
-          <v-flex v-for="(sec_val,sec_key) of itemVal.Data" :key="sec_key" xs3>
-            <v-layout column wrap align-center>
-              <v-flex xs1>{{ sec_val.key }}:</v-flex>
+        <v-layout
+          column
+          wrap
+          align-center
+          my-3
+        >
+          <v-flex xs3>
+            {{ itemVal.Title }}
+          </v-flex>
+          <v-flex
+            v-for="(sec_val,sec_key) of itemVal.Data"
+            :key="sec_key"
+            xs3
+          >
+            <v-layout
+              column
+              wrap
+              align-center
+            >
+              <v-flex xs1>
+                {{ sec_val.key }}:
+              </v-flex>
               <v-flex>
-                <v-btn-toggle v-model="value" mandatory multiple>
-                  <v-btn @click="sec_val.value-=itemVal.perUnit" small dark class="white--text" color="primary">
+                <v-btn-toggle
+                  v-model="value"
+                  mandatory
+                  multiple
+                >
+                  <v-btn
+                    small
+                    dark
+                    class="white--text"
+                    color="primary"
+                    @click="sec_val.value-=itemVal.perUnit"
+                  >
                     <v-icon>mdi-minus</v-icon>
                   </v-btn>
 
@@ -44,7 +98,13 @@
                     <!-- <v-icon slot="append" color="red"></v-icon>
                     <v-icon slot="prepend" color="primary"></v-icon>-->
                   </v-text-field>
-                  <v-btn @click="sec_val.value+=itemVal.perUnit" small dark class="white--text" color="red">
+                  <v-btn
+                    small
+                    dark
+                    class="white--text"
+                    color="red"
+                    @click="sec_val.value+=itemVal.perUnit"
+                  >
                     <v-icon>mdi-plus</v-icon>
                   </v-btn>
                 </v-btn-toggle>
@@ -53,44 +113,77 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs6 md3 class="elevation-1">
-        <v-layout column wrap justify-center align-center my-3>
+      <v-flex
+        xs6
+        md3
+        class="elevation-1"
+      >
+        <v-layout
+          column
+          wrap
+          justify-center
+          align-center
+          my-3
+        >
           <v-flex xs3>
-            <v-layout column align-center wrap>
-                <nav>工作模式:</nav>
-                <v-btn-toggle
-                  dense
-                  small
-                  mandatory
-                  v-model="mode"
-                  color="primary"
-                  background-color="white"
-                >
-                  <v-btn small>制冷</v-btn>
-                  <v-btn small>暖气</v-btn>
-                </v-btn-toggle>
-                <nav>预设风速:</nav>
-                <v-btn-toggle
-                  dense
-                  small
-                  mandatory
-                  v-model="mode"
-                  color="primary"
-                  background-color="white"
-                >
-                  <v-btn small>低</v-btn>
-                  <v-btn small>中</v-btn>
-                  <v-btn small>高</v-btn>
-                </v-btn-toggle>
-
+            <v-layout
+              column
+              align-center
+              wrap
+            >
+              <nav>工作模式:</nav>
+              <v-btn-toggle
+                v-model="ControlPlane.Buttons.WorkMode"
+                dense
+                small
+                mandatory
+                color="primary"
+                background-color="white"
+              >
+                <v-btn small>
+                  制冷
+                </v-btn>
+                <v-btn small>
+                  暖气
+                </v-btn>
+              </v-btn-toggle>
+              <nav>预设风速:</nav>
+              <v-btn-toggle
+                v-model="ControlPlane.Buttons.WindSpeed"
+                dense
+                small
+                mandatory
+                color="primary"
+                background-color="white"
+              >
+                <v-btn small>
+                  低
+                </v-btn>
+                <v-btn small>
+                  中
+                </v-btn>
+                <v-btn small>
+                  高
+                </v-btn>
+              </v-btn-toggle>
             </v-layout>
           </v-flex>
         </v-layout>
       </v-flex>
     </v-layout>
 
-    <v-layout row wrap justify-center>
-      <v-btn color="primary" class="px-5 px-md-10">确认</v-btn>
+    <v-layout
+      row
+      wrap
+      justify-center
+    >
+      <v-btn
+        color="primary"
+        class="px-5 px-md-10"
+        @click="postControlPlaneInfo(ControlPlane)"
+      >
+        确认
+      </v-btn>
     </v-layout>
   </v-container>
 </template>
@@ -123,7 +216,7 @@ export default {
       ControlPlane: {
         // Titles: ["温度(°C)", "费率(元/分钟)", "变温率(°C/分钟)"],
         // Icons:["mdi"],
-        Data: {
+        Input: {
           Temperture: {
             // CalUnit: "°C",
             Title: "温度(°C)",
@@ -154,6 +247,10 @@ export default {
             },
             perUnit:0.5
           }
+        },
+        Buttons:{
+          WorkMode:0,
+          WindSpeed:1,
         }
       }
     };
@@ -166,7 +263,7 @@ export default {
       this.axios
         .get("api/planeinfo", null)
         .then(res => {
-          this.PlaneData = res.data;
+          Data = res.data;
         })
         .catch(err => {
           console.error(err);
@@ -197,6 +294,25 @@ export default {
     })(),
     clickSwitcher(room) {
       room["powerOn"] = !room["powerOn"];
+      this.axios.post("api/admin/power",params)
+      .then(res => {
+
+      })
+      .catch(err => {
+        console.error(err); 
+      })
+    },
+    packInfo(ControlPlaneInfo){
+      
+    },
+    postControlPlaneInfo(Info){
+      this.axios.post("api/ControlPlane",Info)
+      .then(res => {
+        
+      })
+      .catch(err => {
+        console.error(err); 
+      })
     }
   }
 };

@@ -1,9 +1,17 @@
 <template>
   <v-container grid-list-xs>
-    <v-layout row wrap justify-center align-center>
-      <v-flex xs12 sm6>
+    <v-layout
+      row
+      wrap
+      justify-center
+      align-center
+    >
+      <v-flex
+        xs12
+        sm6
+      >
         {{ RoomDetail }}
-        <v-card> </v-card>>
+        <v-card />>
       </v-flex>
     </v-layout>
   </v-container>
@@ -29,9 +37,9 @@ export default {
         data: {
           RoomNum: this.props.RoomNum
         }
-      }).then(function(response) {
-        if (response.status == 200) {
-          this.$data.sendBackInfo = response.data;
+      }).then(function(res) {
+        if (res.status == 200) {
+          this.$data.sendBackInfo = res.data;
         } else {
           alert("获取失败！");
           this.$router.push({ path: "Home" });

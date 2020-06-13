@@ -1,50 +1,77 @@
 <template>
   <v-container fluid>
     <v-row align="center">
-      <v-col cols="3" md="4"></v-col>
-      <v-col cols="6" md="4">
+      <v-col
+        cols="3"
+        md="4"
+      />
+      <v-col
+        cols="6"
+        md="4"
+      >
         <v-select
-          :items="Rooms"
           v-model="RoomId"
+          :items="Rooms"
           label="Room"
           outlined
-        ></v-select>
+        />
       </v-col>
-      <v-col cols="3" md="4"></v-col>
+      <v-col
+        cols="3"
+        md="4"
+      />
     </v-row>
 
     <v-row algin="center">
-      <v-col cols="1" md="3"></v-col>
+      <v-col
+        cols="1"
+        md="3"
+      />
       <v-col>
-        <v-card class="mx-auto elevation-8" max-width="1000" outlined>
+        <v-card
+          class="mx-auto elevation-8"
+          max-width="1000"
+          outlined
+        >
           <v-list-item three-line>
             <v-list-item-content>
-              <v-list-item-tile avatar class="headline mb-8"
-                >控制器</v-list-item-tile
+              <v-list-item-tile
+                avatar
+                class="headline mb-8"
               >
+                控制器
+              </v-list-item-tile>
             </v-list-item-content>
             <v-list-item-content>
-              <v-list-item-tile avatar class="headline mb-8"
-                >当前设置温度:{{
-                  this.AirconditionInfo.curTemp
-                }}°C</v-list-item-tile
+              <v-list-item-tile
+                avatar
+                class="headline mb-8"
               >
+                当前设置温度:{{
+                  AirconditionInfo.curTemp
+                }}°C
+              </v-list-item-tile>
             </v-list-item-content>
           </v-list-item>
 
           <v-card-text>
-            <v-row align="center" wrap justify-center>
+            <v-row
+              align="center"
+              wrap
+              justify-center
+            >
               <v-col>
                 <v-btn
-                  style="display:block;margin:0 auto"
                   id="powerSwitcher"
+                  style="display:block;margin:0 auto"
                   :color="controller.powerSwitcher.switcherColor"
-                  @click="switchPower"
                   dark
                   fab
                   large
-                  >{{ controller.powerSwitcher.msg }}</v-btn
+                  @click="switchPower"
                 >
+                  {{ controller.powerSwitcher.msg }}
+                </v-btn>
               </v-col>
               <v-col>
                 <v-btn
@@ -54,14 +81,20 @@
                   fab
                   large
                   @click="switchTimer"
-                  >定时:{{ controller.timer.msg }}</v-btn
                 >
+                  定时:{{ controller.timer.msg }}
+                </v-btn>
               </v-col>
             </v-row>
 
-            <v-row align="center" wrap>
+            <v-row
+              align="center"
+              wrap
+            >
               <v-col cols="3">
-                <blockquote class="headline mb-1">风速</blockquote>
+                <blockquote class="headline mb-1">
+                  风速
+                </blockquote>
               </v-col>
               <v-col cols="9">
                 <v-radio-group v-model="AirconditionInfo.windSpeed">
@@ -70,7 +103,10 @@
                       v-for="item in controller.wind.windSpeed"
                       :key="item.key"
                     >
-                      <v-radio :label="item" :value="item.key"></v-radio>
+                      <v-radio
+                        :label="item"
+                        :value="item.key"
+                      />
                     </v-col>
                   </v-row>
                 </v-radio-group>
@@ -79,39 +115,52 @@
 
             <v-row>
               <v-col cols="3">
-                <blockquote class="headline">温度</blockquote>
+                <blockquote class="headline">
+                  温度
+                </blockquote>
               </v-col>
               <v-col cols="2">
                 <v-text-field
+                  v-model="controller.temperture.curTemp"
                   label="°C"
                   value="value"
                   single-line
-                  v-model="controller.temperture.curTemp"
                   dense
                   solo
-                ></v-text-field>
+                />
               </v-col>
               <v-col>
-                <v-btn style="display:block" color="success" @click="addTemp">
-                  <v-icon large>mdi-menu-up</v-icon>
+                <v-btn
+                  style="display:block"
+                  color="success"
+                  @click="addTemp"
+                >
+                  <v-icon large>
+                    mdi-menu-up
+                  </v-icon>
                 </v-btn>
               </v-col>
               <v-col>
-                <v-btn color="success" @click="minusTemp">
-                  <v-icon large>mdi-menu-down</v-icon>
+                <v-btn
+                  color="success"
+                  @click="minusTemp"
+                >
+                  <v-icon large>
+                    mdi-menu-down
+                  </v-icon>
                 </v-btn>
               </v-col>
             </v-row>
 
             <v-row>
-              <v-col cols="5"></v-col>
+              <v-col cols="5" />
               <v-col>
                 <blockquote>
                   <v-switch
-                    label="扫风"
                     v-model="controller.wind.sweeping"
+                    label="扫风"
                     dense
-                  ></v-switch>
+                  />
                 </blockquote>
                 <!-- <v-checkbox
                   label="扫风"
@@ -124,7 +173,9 @@
             </v-row>
             <v-row>
               <v-col cols="3">
-                <blockquote class="headline mb-1">计时</blockquote>
+                <blockquote class="headline mb-1">
+                  计时
+                </blockquote>
               </v-col>
               <v-col>
                 <v-slider
@@ -133,23 +184,31 @@
                   :tick-labels="controller.timer.timeSelection"
                   class="mx-3"
                   ticks
-                ></v-slider>
+                />
               </v-col>
             </v-row>
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col cols="1" md="3"></v-col>
+      <v-col
+        cols="1"
+        md="3"
+      />
     </v-row>
 
     <v-row algin="center">
-      <v-col></v-col>
+      <v-col />
       <v-col cols="6">
-        <v-btn style="display:block" color="primary" large rounded
-          >信息发送</v-btn
+        <v-btn
+          style="display:block"
+          color="primary"
+          large
+          rounded
         >
+          信息发送
+        </v-btn>
       </v-col>
-      <v-col></v-col>
+      <v-col />
     </v-row>
   </v-container>
 </template>
@@ -194,6 +253,9 @@ export default {
       sweeping: undefined
     }
   }),
+  watch: {
+    RoomId: "getAirconditionInfo"
+  },
   mounted: () => {
     // this.$nextTick(function() {
     //   //3 sec each time
@@ -206,8 +268,7 @@ export default {
         axios
           .get("127.0.0.1:8081/getAirconditionInfo", this.RoomId)
           .then(res => {
-            this.AirconditionInfo = res.AirconditionInfo;
-            console.log(res);
+            this.AirconditionInfo = res.data;
             console.log(this.AirconditionInfo);
           })
           .catch(err => {
@@ -273,9 +334,6 @@ export default {
     packSendInfo: function() {},
 
     sendInfo: function() {}
-  },
-  watch: {
-    RoomId: "getAirconditionInfo"
   }
 };
 </script>

@@ -9,11 +9,12 @@ const AdminPlane = () => import("@/pages/Admin/AdminPlane.vue");
 const Manager = () => import("@/pages/Manager/Manager.vue");
 const ManagerLogin = () => import("@/pages/Manager/ManagerLogin");
 const ManagerPlane = () => import("@/pages/Manager/ManagerPlane.vue");
+const AccountInfo = () => import("@/pages/Manager/AccountInfo.vue");
+const LogInfo = () => import("@/pages/Manager/LogInfo.vue");
 const Register = () => import("@/pages/Manager/Register.vue");
 const Bill = () => import("@/pages/Reception/Bill.vue");
 const Reception = () => import("@/pages/Reception/Reception");
 const ReceptionLogin = () => import("@/pages/Reception/ReceptionLogin");
-// const AddGuest = () => import('@/pages/Reception/AddGuest');
 const RoomInfo = () => import("@/pages/Reception/RoomInfo");
 const Entrance = () => import("@/pages/Entrance.vue");
 const Login = () => import("@/pages/Login.vue");
@@ -85,12 +86,22 @@ const routes = [{
     children: [{
         path: "",
         name: "Manager",
-        component: ManagerPlane
+        component: AccountInfo
       },
       {
         path: "ManagerPlane",
         name: "ManagerPlane",
         component: ManagerPlane
+      },
+      {
+        path: "AccountInfo",
+        name: "AccountInfo",
+        component: AccountInfo
+      },
+      {
+        path: "LogInfo",
+        name: "LogInfo",
+        component: LogInfo
       },
       {
         path: "Register",

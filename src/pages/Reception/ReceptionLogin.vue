@@ -41,14 +41,13 @@
             class="py-5"
           >
             <v-form @submit.prevent="postLogin">
-              <!-- <v-layout row> -->
               <v-flex xs12>
                 <h1 class="text-center mb-5">
                   前台登录
                 </h1>
                 <v-text-field
                   id="ID"
-                  v-model="ReceptionInfo.AccountID"
+                  v-model="UserInfo.AccountID"
                   name="ID"
                   label="ID"
                   type="input"
@@ -59,7 +58,7 @@
               <v-flex xs12>
                 <v-text-field
                   id="Password"
-                  v-model="ReceptionInfo.Password"
+                  v-model="UserInfo.Password"
                   name="password"
                   label="Password"
                   type="password"
@@ -75,7 +74,6 @@
                   <v-btn
                     outlined
                     type="submit"
-                    :loading="loading"
                   >
                     前台登录
                     <v-icon right>
@@ -89,29 +87,10 @@
                     </span>
                   </v-btn>
                 </div>
-                <!-- <div class="text-center mt-3">
-                  <v-btn color="blue" :loading="loading" @click.prevent="onSigninGoogle">
-                    忘记密码?
-                    <v-icon right>mdi-key-variant</v-icon>
-                    <span slot="loader" class="custom-loader">
-                      <v-icon>cached</v-icon>
-                    </span>
-                  </v-btn>
-                </div>-->
-                <!-- <div class="text-center mt-3">
-                  <v-btn color="blue" :loading="loading" to="Register">
-                    没有帐号?
-                    <v-icon right>mdi-account</v-icon>
-                    <span slot="loader" class="custom-loader">
-                      <v-icon>cached</v-icon>
-                    </span>
-                  </v-btn>
-                </div>-->
+
                 <div class="text-center mt-3">
-                  <!-- <div id="my-signin2"></div> -->
                   <v-btn
                     color="grey"
-                    :loading="loading"
                     to="Entrance"
                   >
                     返回入口
@@ -139,26 +118,22 @@
 export default {
   name: "Login",
   data: () => ({
-    ReceptionInfo: {
+    UserInfo: {
       AccountID: undefined,
       Password: undefined
     },
-    // loading:true,
     error: false
   }),
   methods: {
     postLogin: function() {
-      //   let RecvData = await this.axios.post(this.$route.path + "/authAccount");
       this.axios
-        .post("api/authReception", this.ReceptionInfo)
+        .post("api/authUser", this.UserInfo)
         .then(res => {
           const RecvData = res.data;
-          console.log(RecvData);
           if (res.status === 200) {
             alert("登录成功");
             this.$router.push({
-              name: "RoomInfo",
-              params: { id: RecvData.id }
+              name: "Reception"
             });
           } else {
             if (RecvData.username !== localStorage.getItem("username")) {
@@ -167,7 +142,6 @@ export default {
               alert("密码错误");
             }
           }
-          console.log(res);
         })
         .catch(err => {
           console.error(err);

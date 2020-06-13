@@ -1,22 +1,34 @@
 <template>
   <!-- <v-btn> -->
-  <v-container grid-list-xs fluid>
-    <v-layout row justify-space-around wrap>
+  <v-container
+    grid-list-xs
+    fluid
+  >
+    <v-layout
+      row
+      justify-space-around
+      wrap
+    >
       <blockquote>
         <blockquote class="Room blockquote .font-weight-regular">
           <span>房间编号:{{ RoomInfo.SerialNumber }}</span>
-          <br />
+          <br>
           <span>当前温度:{{ RoomInfo.CurrentTemputure }}</span>
-          <br />
+          <br>
           <span>目标温度:{{ RoomInfo.TargetTemputure }}</span>
-          <br />
+          <br>
           <span>当前风速:{{ RoomInfo.CurrentWindSpeed }}</span>
-          <br />
+          <br>
           <span>状态:{{ RoomInfo.CurrentState }}</span>
-          <br />
+          <br>
         </blockquote>
-        <v-layout justify-center mt-1>
-          <v-btn color="primary">详细信息</v-btn>
+        <v-layout
+          justify-center
+          mt-1
+        >
+          <v-btn color="primary">
+            详细信息
+          </v-btn>
         </v-layout>
       </blockquote>
     </v-layout>

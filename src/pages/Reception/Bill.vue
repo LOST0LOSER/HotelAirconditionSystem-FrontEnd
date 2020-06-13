@@ -153,7 +153,6 @@ export default {
       }
     },
     getBillInfo(sentRoomID) {
-      console.log(sentRoomID)
       this.axios
         .get("api/getBillInfo", { params: { RoomID: sentRoomID } })
         .then(res => {
@@ -183,10 +182,10 @@ export default {
         .delete("api/room/payBill", { params: { RoomID : sentRoomID }})
         .then(res => {
           if (res.status === 200) {
-            alert("${RoomID}房间完成结账");
             for (let room of this.RoomData) {
               if (room.RoomID === sentRoomID) {
                 room.RoomSignInState = false;
+                alert( sentRoomID +"房间完成结账");
                 break;
               }
             }

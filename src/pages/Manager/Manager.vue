@@ -1,14 +1,17 @@
 <template>
   <div>
     <!-- $event代表组件emit消息传递出来的变量 -->
-    <Header :SlideBarToggle="SlideBarToggleState" @switchToggle="SlideBarToggleState = $event"></Header>
-    <SlideBar
-      :UserID="'Manager'"
-      :List="List"
-      :SlideBarToggle="SlideBarToggleState"
+    <Header
+      :slide-bar-toggle="SlideBarToggleState"
       @switchToggle="SlideBarToggleState = $event"
-      :LogOutPath="'ManagerLogin'"
-    ></SlideBar>
+    />
+    <SlideBar
+      :user-i-d="&quot;Manager&quot;"
+      :list="List"
+      :slide-bar-toggle="SlideBarToggleState"
+      :log-out-path="&quot;ManagerLogin&quot;"
+      @switchToggle="SlideBarToggleState = $event"
+    />
     <!-- <v-container fluid grid-list-md>
       <v-layout row wrap>
         <v-flex xs9>
@@ -20,7 +23,7 @@
       </v-layout>
     </v-container>-->
     <div>
-      <router-view></router-view>
+      <router-view />
     </div>
   </div>
 </template>
@@ -49,9 +52,14 @@ export default {
     // ],
     List: [
       {
-        title: "AdminPlane",
+        title: "查看员工信息",
         icon: "mdi-desktop-mac-dashboard",
-        link: "AdminPlane"
+        link: "AccountInfo"
+      },
+      {
+        title: "报表信息",
+        icon: "mdi-book-open",
+        link: "LogInfo"
       }
       // {
       //   title: "MyRoomInfo",

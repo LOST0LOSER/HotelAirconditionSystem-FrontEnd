@@ -1,9 +1,27 @@
 <template>
-  <v-card class="mx-auto elevation-8" max-width="32rem" height="40rem" outlined>
-    <v-layout row wrap justify-center mt-12>
-      <v-flex xs4 class="headline text-center">控制器</v-flex>
-      <v-flex xs2></v-flex>
-      <v-flex xs4 class="headline text-center">
+  <v-card
+    class="mx-auto elevation-8"
+    max-width="32rem"
+    height="40rem"
+    outlined
+  >
+    <v-layout
+      row
+      wrap
+      justify-center
+      mt-12
+    >
+      <v-flex
+        xs4
+        class="headline text-center"
+      >
+        控制器
+      </v-flex>
+      <v-flex xs2 />
+      <v-flex
+        xs4
+        class="headline text-center"
+      >
         当前室内温度:
         {{ controller.temperture.curTemp }}°C
       </v-flex>
@@ -19,17 +37,23 @@
     </v-list-item>
 
     <v-card-text>
-      <v-row align="center" wrap justify-center>
+      <v-row
+        align="center"
+        wrap
+        justify-center
+      >
         <v-col>
           <v-btn
-            style="display:block;margin:0 auto"
             id="powerSwitcher"
+            style="display:block;margin:0 auto"
             :color="controller.powerSwitcher.switcherColor"
-            @click="switchPower"
             dark
             fab
             large
-          >{{ controller.powerSwitcher.msg }}</v-btn>
+            @click="switchPower"
+          >
+            {{ controller.powerSwitcher.msg }}
+          </v-btn>
         </v-col>
         <v-col>
           <v-btn
@@ -39,19 +63,32 @@
             fab
             large
             @click="switchTimer"
-          >定时:{{ controller.timer.msg }}</v-btn>
+          >
+            定时:{{ controller.timer.msg }}
+          </v-btn>
         </v-col>
       </v-row>
 
-      <v-row align="center" wrap>
+      <v-row
+        align="center"
+        wrap
+      >
         <v-col cols="3">
-          <blockquote class="headline mb-1 text-center">风速</blockquote>
+          <blockquote class="headline mb-1 text-center">
+            风速
+          </blockquote>
         </v-col>
         <v-col cols="9">
           <v-radio-group v-model="controller.wind.windSpeed">
             <v-row>
-              <v-col v-for="item in controller.wind.windSpeedChoices" :key="item.key">
-                <v-radio :label="item" :value="item.key"></v-radio>
+              <v-col
+                v-for="item in controller.wind.windSpeedChoices"
+                :key="item.key"
+              >
+                <v-radio
+                  :label="item"
+                  :value="item.key"
+                />
               </v-col>
             </v-row>
           </v-radio-group>
@@ -60,36 +97,52 @@
 
       <v-row>
         <v-col cols="3">
-          <blockquote class="headline text-center">温度</blockquote>
+          <blockquote class="headline text-center">
+            温度
+          </blockquote>
         </v-col>
         <v-col cols="2">
           <v-text-field
+            v-model="controller.temperture.targetTemp"
             label="°C"
             value="value"
             single-line
-            v-model="controller.temperture.targetTemp"
             outlined
             dense
-          ></v-text-field>
+          />
         </v-col>
-        <v-col cols="1"></v-col>
+        <v-col cols="1" />
         <v-col>
-          <v-btn d-flex style="margin: 0 auto" color="success" @click="addTemp">
+          <v-btn
+            d-flex
+            style="margin: 0 auto"
+            color="success"
+            @click="addTemp"
+          >
             <v-icon>mdi-menu-up</v-icon>
           </v-btn>
         </v-col>
         <v-col>
-          <v-btn d-flex style="margin: 0 auto" color="success" @click="minusTemp">
+          <v-btn
+            d-flex
+            style="margin: 0 auto"
+            color="success"
+            @click="minusTemp"
+          >
             <v-icon>mdi-menu-down</v-icon>
           </v-btn>
         </v-col>
       </v-row>
 
       <v-row>
-        <v-col cols="5"></v-col>
+        <v-col cols="5" />
         <v-col>
           <blockquote>
-            <v-switch label="扫风" v-model="controller.wind.sweeping" dense></v-switch>
+            <v-switch
+              v-model="controller.wind.sweeping"
+              label="扫风"
+              dense
+            />
           </blockquote>
           <!-- <v-checkbox
                   label="扫风"
@@ -102,7 +155,9 @@
       </v-row>
       <v-row>
         <v-col cols="3">
-          <blockquote class="headline mb-1">计时</blockquote>
+          <blockquote class="headline mb-1">
+            计时
+          </blockquote>
         </v-col>
         <v-col>
           <v-slider
@@ -111,7 +166,7 @@
             :tick-labels="controller.timer.timeSelection"
             class="mx-3"
             ticks
-          ></v-slider>
+          />
         </v-col>
       </v-row>
     </v-card-text>
@@ -178,7 +233,34 @@ export default {
       // }
     };
   },
-  mounted() {
+  watch: {
+    asyncFlag: {
+      handler(newval, oldval) {
+        if (oldval !== newval) {
+          console.log("outsideChangeThenGet");
+          this.getAirconditionInfo();
+          this.$data.hasGetInfo = true;
+        }
+      }
+    },
+    controller: {
+      handler() {
+        if (this.$data.hasGetInfo === true) {
+          if (this.$data.controllerIsSet === true) {
+            console.log("emitOK");
+            this.packSendInfo();
+            console.log(this.$data.infoPack == this.AirconditionInfo);
+            this.$emit("updateAirconditionInfo", this.infoPack);
+          } else {
+            this.$data.controllerIsSet = true;
+          }
+        }
+      },
+      deep: true,
+      immediate: true
+    }
+  },
+  created() {
     this.getAirconditionInfo();
   },
   methods: {
@@ -211,7 +293,7 @@ export default {
     //     this.axios
     //       .post(serverURL + "/changeAirconditionInfo", this.infoPack)
     //       .then(res => {
-    //         this.AirconditionInfo = res.AirconditionInfo;
+    //         this.AirconditionInfo = res.data.AirconditionInfo;
     //       })
     //       .catch(err => {
     //         console.error(err);
@@ -292,38 +374,6 @@ export default {
       this.infoPack.targetTemp = temperture.targetTemp;
       this.infoPack.timerSet = timer.timerSet;
       this.infoPack.timerDuration = timer.timerDuration;
-    }
-  },
-  watch: {
-    asyncFlag: {
-      handler(newval, oldval) {
-        if (oldval !== newval) {
-          console.log("outsideChangeThenGet");
-          this.getAirconditionInfo();
-          this.$data.hasGetInfo = true;
-
-          // this.$data.hasGetInfo = true;
-        }
-      }
-      // immediate:true
-    },
-    // AirconditionInfo:"getAirconditionInfo",
-
-    controller: {
-      handler() {
-        if (this.$data.hasGetInfo === true) {
-          if (this.$data.controllerIsSet === true) {
-            console.log("emitOK");
-            this.packSendInfo();
-            console.log(this.$data.infoPack == this.AirconditionInfo);
-            this.$emit("updateAirconditionInfo", this.infoPack);
-          } else {
-            this.$data.controllerIsSet = true;
-          }
-        }
-      },
-      deep: true,
-      immediate: true
     }
   }
 };

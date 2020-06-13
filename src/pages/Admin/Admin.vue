@@ -1,14 +1,17 @@
 <template>
   <div>
     <!-- $event代表组件emit消息传递出来的变量 -->
-    <Header :SlideBarToggle="SlideBarToggleState" @switchToggle="SlideBarToggleState = $event"></Header>
-    <SlideBar
-      :UserID="'Admin'"
-      :List="List"
-      :SlideBarToggle="SlideBarToggleState"
+    <Header
+      :slide-bar-toggle="SlideBarToggleState"
       @switchToggle="SlideBarToggleState = $event"
-      :LogOutPath="'AdminLogin'"
-    ></SlideBar>
+    />
+    <SlideBar
+      :user-i-d="&quot;Admin&quot;"
+      :list="List"
+      :slide-bar-toggle="SlideBarToggleState"
+      :log-out-path="&quot;AdminLogin&quot;"
+      @switchToggle="SlideBarToggleState = $event"
+    />
     <!-- <v-container fluid grid-list-md>
       <v-layout row wrap>
         <v-flex xs9>
@@ -20,13 +23,12 @@
       </v-layout>
     </v-container>-->
     <div>
-      <router-view></router-view>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld';
 import Header from "@/components/Header";
 import SlideBar from "@/components/SlideBar";
 export default {

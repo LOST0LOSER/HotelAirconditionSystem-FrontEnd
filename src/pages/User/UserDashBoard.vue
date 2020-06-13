@@ -1,13 +1,21 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" md="6" lg="6">
-        <DisplayAirconditionInfo :AirconditionInfo="AirconditionInfo" />
+      <v-col
+        cols="12"
+        md="6"
+        lg="6"
+      >
+        <DisplayAirconditionInfo :aircondition-info="AirconditionInfo" />
       </v-col>
-      <v-col cols="12" md="6" lg="6">
+      <v-col
+        cols="12"
+        md="6"
+        lg="6"
+      >
         <AirconditionWidget
-          :asyncFlag="asyncFlag"
-          :AirconditionInfo="AirconditionInfo"
+          :async-flag="asyncFlag"
+          :aircondition-info="AirconditionInfo"
           @updateAirconditionInfo="updateAirconditionInfo"
         />
       </v-col>
@@ -44,7 +52,7 @@ export default {
     },
     asyncFlag: false
   }),
-  created() {
+  mounted() {
     this.getAirconditonInfo();
     //定时取数据
     this.timer = setInterval(this.getAirconditonInfo, 5000);
@@ -61,11 +69,51 @@ export default {
         })
         .then(res => {
           if (res.status === 200) {
-            if (this.AirconditionInfo !== res.data.AirconditionInfo) {
-              this.AirconditionInfo = Object.assign(
-                {},
-                res.data.AirconditionInfo
-              );
+            const data = res.data;
+            if (this.AirconditionInfo !== data) {
+              this.AirconditionInfo = Object.assign({}, data);
+              //null处理
+              this.AirconditionInfo.powerOn = this.AirconditionInfo.powerOn
+                ? this.AirconditionInfo.powerOn
+                : null;
+              this.AirconditionInfo.curTemp = this.AirconditionInfo.curTemp
+                ? this.AirconditionInfo.curTemp
+                : null;
+              this.AirconditionInfo.targetTemp = this.AirconditionInfo
+                .targetTemp
+                ? this.AirconditionInfo.targetTemp
+                : null;
+              this.AirconditionInfo.windSpeed = this.AirconditionInfo.windSpeed
+                ? this.AirconditionInfo.windSpeed
+                : null;
+              this.AirconditionInfo.sweeping = this.AirconditionInfo.sweeping
+                ? this.AirconditionInfo.sweeping
+                : null;
+              this.AirconditionInfo.timerSet = this.AirconditionInfo.timerSet
+                ? this.AirconditionInfo.timerSet
+                : null;
+              this.AirconditionInfo.timerDuration = this.AirconditionInfo
+                .timerDuration
+                ? this.AirconditionInfo.timerDuration
+                : null;
+              this.AirconditionInfo.costs = this.AirconditionInfo.costs
+                ? this.AirconditionInfo.costs
+                : null;
+              this.AirconditionInfo.isCool = this.AirconditionInfo.isCool
+                ? this.AirconditionInfo.isCool
+                : null;
+              this.AirconditionInfo.defaultTemp = this.AirconditionInfo
+                .defaultTemp
+                ? this.AirconditionInfo.defaultTemp
+                : null;
+              this.AirconditionInfo.highLimitedTemp = this.AirconditionInfo
+                .highLimitedTemp
+                ? this.AirconditionInfo.highLimitedTemp
+                : null;
+              this.AirconditionInfo.lowLimitedTemp = this.AirconditionInfo
+                .lowLimitedTemp
+                ? this.AirconditionInfo.lowLimitedTemp
+                : null;
               //若管理员修改了设定
               //异步传输延迟
               this.asyncFlag = !this.asyncFlag;

@@ -6,65 +6,93 @@
     align="center"
     outlined
   >
-    <v-card-title primary-title pt-12 style="height:3rem;"></v-card-title>
+    <v-card-title
+      primary-title
+      pt-12
+      style="height:3rem;"
+    />
     <v-list-item>
       <v-list-item-content>
-        <v-list-item-title class="headline">室内温度:</v-list-item-title>
+        <v-list-item-title class="headline">
+          室内温度:
+        </v-list-item-title>
       </v-list-item-content>
       <v-list-item-content>
-        <v-list-item-title class="headline"
-          >{{ displayData.curTemp }}°C</v-list-item-title
+        <v-list-item-title
+          class="headline"
         >
+          {{ displayData.curTemp }}°C
+        </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
     <v-list-item>
       <v-list-item-content>
-        <v-list-item-title class="headline">目标温度:</v-list-item-title>
+        <v-list-item-title class="headline">
+          目标温度:
+        </v-list-item-title>
       </v-list-item-content>
       <v-list-item-content>
-        <v-list-item-title class="headline"
-          >{{ displayData.targetTemp }}°C</v-list-item-title
+        <v-list-item-title
+          class="headline"
         >
+          {{ displayData.targetTemp }}°C
+        </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
     <v-list-item>
       <v-list-item-content>
-        <v-list-item-title class="headline">工作模式:</v-list-item-title>
+        <v-list-item-title class="headline">
+          工作模式:
+        </v-list-item-title>
       </v-list-item-content>
       <v-list-item-content>
-        <v-list-item-title class="headline">{{
-          displayData.workMode
-        }}</v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-    <v-list-item>
-      <v-list-item-content>
-        <v-list-item-title class="headline">当前风速:</v-list-item-title>
-      </v-list-item-content>
-      <v-list-item-content>
-        <v-list-item-title class="headline">{{
-          displayData.windSpeed
-        }}</v-list-item-title>
+        <v-list-item-title class="headline">
+          {{
+            displayData.workMode
+          }}
+        </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
     <v-list-item>
       <v-list-item-content>
-        <v-list-item-title class="headline">空调状态:</v-list-item-title>
+        <v-list-item-title class="headline">
+          当前风速:
+        </v-list-item-title>
       </v-list-item-content>
       <v-list-item-content>
-        <v-list-item-title class="headline">{{
-          displayData.state
-        }}</v-list-item-title>
+        <v-list-item-title class="headline">
+          {{
+            displayData.windSpeed
+          }}
+        </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
     <v-list-item>
       <v-list-item-content>
-        <v-list-item-title class="headline">累计费用:</v-list-item-title>
+        <v-list-item-title class="headline">
+          空调状态:
+        </v-list-item-title>
       </v-list-item-content>
       <v-list-item-content>
-        <v-list-item-title class="headline">{{
-          displayData.costs
-        }}</v-list-item-title>
+        <v-list-item-title class="headline">
+          {{
+            displayData.state
+          }}
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+    <v-list-item>
+      <v-list-item-content>
+        <v-list-item-title class="headline">
+          累计费用:
+        </v-list-item-title>
+      </v-list-item-content>
+      <v-list-item-content>
+        <v-list-item-title class="headline">
+          {{
+            displayData.costs
+          }}
+        </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
     <!-- </v-card-text> -->
@@ -101,6 +129,9 @@ export default {
       }
     };
   },
+  watch: {
+    AirconditionInfo: "translateInfo"
+  },
   methods: {
     translateInfo: function() {
       this.displayData.curTemp = this.AirconditionInfo.curTemp;
@@ -127,9 +158,6 @@ export default {
         : "暖气";
       this.displayData.costs = this.AirconditionInfo.costs;
     }
-  },
-  watch: {
-    AirconditionInfo: "translateInfo"
   }
 };
 </script>

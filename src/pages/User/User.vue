@@ -1,16 +1,16 @@
 <template>
   <div>
     <Header
-      :SlideBarToggle="SlideBarToggleState"
+      :slide-bar-toggle="SlideBarToggleState"
       @switchToggle="SlideBarToggleState = $event"
-    ></Header>
+    />
     <SlideBar
-      :UserID="id"
-      :List="List"
-      :SlideBarToggle="SlideBarToggleState"
+      :user-i-d="id"
+      :list="List"
+      :slide-bar-toggle="SlideBarToggleState"
+      :log-out-path="&quot;UserLogin&quot;"
       @switchToggle="SlideBarToggleState = $event"
-      :LogOutPath="'UserLogin'"
-    ></SlideBar>
+    />
     <!-- <v-container fluid grid-list-md>
       <v-layout row wrap>
         <v-flex xs9>
@@ -22,7 +22,7 @@
       </v-layout>
     </v-container>-->
     <div>
-      <router-view></router-view>
+      <router-view />
     </div>
   </div>
 </template>

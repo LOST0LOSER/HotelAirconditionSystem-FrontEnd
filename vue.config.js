@@ -1,8 +1,22 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
+
+  // configureWebpack: {
+  //   devtool: 'source-map',
+  // },
+
   
+
+  css: {
+    extract: false
+  },
+
+  // productionSourceMap: false,
+
+  lintOnSave: false,
+
   devServer: {
-    open: (function(){
+    open: (function () {
       process.platform === "win32";
       process.arch === "x64";
     })(),
@@ -19,7 +33,7 @@ module.exports = {
         // 将主机标头的原点更改为目标URL
         changeOrigin: true,
         pathRewrite: {
-          "^/api": "/"
+          "^/api": ""
         },
       },
       // "/": {
@@ -31,16 +45,5 @@ module.exports = {
       //   }
       // }
     }
-  },
-  configureWebpack: {
-    devtool: "source-map",
-  },
-  
-  lintOnSave: false,
-
-  assetsDir: 'static',
-
-  css: {
-    extract: false
   },
 }

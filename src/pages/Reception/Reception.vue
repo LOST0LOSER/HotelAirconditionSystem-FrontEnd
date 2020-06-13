@@ -1,18 +1,18 @@
 <template>
   <div>
     <Header
-      :SlideBarToggle="SlideBarToggleState"
+      :slide-bar-toggle="SlideBarToggleState"
       @switchToggle="SlideBarToggleState = $event"
-    ></Header>
+    />
     <SlideBar
-      :UserID="'receptionist'"
-      :List="List"
-      :SlideBarToggle="SlideBarToggleState"
+      :user-i-d="&quot;receptionist&quot;"
+      :list="List"
+      :slide-bar-toggle="SlideBarToggleState"
+      :log-out-path="&quot;ReceptionLogin&quot;"
       @switchToggle="SlideBarToggleState = $event"
-      :LogOutPath="'ReceptionLogin'"
-    ></SlideBar>
+    />
     <div>
-      <router-view></router-view>
+      <router-view />
     </div>
   </div>
 </template>
