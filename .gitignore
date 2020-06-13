@@ -21,3 +21,4 @@ yarn-error.log*
 *.sw?
 public/index.html
 src/pages/gobal.js
+src/pages/global.js

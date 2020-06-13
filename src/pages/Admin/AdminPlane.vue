@@ -190,7 +190,8 @@
 
 <script>
 //Admin共享数据区
-import Data from "@/pages/Admin/PlaneData.js";
+// import Data from "@/pages/Admin/PlaneData.js";
+import Data from "@/pages/global.js";
 export default {
   data() {
     return {
@@ -308,7 +309,7 @@ export default {
     postControlPlaneInfo(Info){
       this.axios.post("api/ControlPlane",Info)
       .then(res => {
-        
+
       })
       .catch(err => {
         console.error(err); 

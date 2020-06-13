@@ -133,7 +133,7 @@ export default {
           if (res.status === 200) {
             alert("登录成功");
             this.$router.push({
-              name: "Manager"
+              name: "Admin"
             });
           } else {
             if (RecvData.username !== localStorage.getItem("username")) {
