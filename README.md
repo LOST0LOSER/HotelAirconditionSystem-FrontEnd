@@ -1,6 +1,6 @@
 # HotelAirconditionSystem-FrontEnd
 
-Power by Vue
+Powered by Vue
 
 ## Project setup
 ```
